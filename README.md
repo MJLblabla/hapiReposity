@@ -9,6 +9,7 @@
 
 
 ## 框架总览 ##
+[![](https://jitpack.io/v/MJLblabla/hapiReposity.svg)](https://jitpack.io/#MJLblabla/hapiReposity)
 
 ![此处输入图片的描述][1]
 
