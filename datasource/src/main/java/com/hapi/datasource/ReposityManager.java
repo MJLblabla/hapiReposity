@@ -1,9 +1,14 @@
 package com.hapi.datasource;
 
 import java.util.LinkedHashMap;
+
+import retrofit2.Retrofit;
+
 public class ReposityManager {
     private static ReposityManager instance = null;
     private LinkedHashMap<Class<? extends BaseReposity>, BaseReposity> repoMap = null;
+
+    private Retrofit retrofit;
 
     private ReposityManager() {
         repoMap = new LinkedHashMap<>();
@@ -16,6 +21,15 @@ public class ReposityManager {
             }
             return instance;
         }
+    }
+
+    public Retrofit getRetrofitClient(){
+        return retrofit;
+    }
+
+
+    public void setRetrofitClient(Retrofit retrofit){
+        this.retrofit = retrofit;
     }
 
     public void addRepo(BaseReposity<?> repo) {

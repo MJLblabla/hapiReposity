@@ -3,9 +3,10 @@ package com.hapi.datasource.cache
 
 import android.text.TextUtils
 import com.alibaba.fastjson.util.ParameterizedTypeImpl
-import com.pince.json.JsonUtil
-import com.pince.ut.EncryptUtil
-import com.pince.ut.SpUtil
+import com.hapi.datasource.JsonUtil
+import com.hapi.ut.EncryptUtil
+import com.hapi.ut.SpUtil
+
 import java.lang.reflect.Type
 
 /**
