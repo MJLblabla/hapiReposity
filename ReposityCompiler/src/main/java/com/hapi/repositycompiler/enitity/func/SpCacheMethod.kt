@@ -20,7 +20,8 @@ class SpCacheMethod(private val symbol: Symbol.MethodSymbol, private val mExecut
         executableElement.parameters.forEach {
 
             parameters.add(Parameter(it.simpleName.toString(), it.asType().asKotlinTypeName(),defaultVMap[it.simpleName.toString()]))
-            (it as Symbol).type.asKotlinTypeName()
+
+            Logger.warn("xxxxxxxxxxxxxxxxxxxx"+   (it as Symbol).type.toString() )
         }
     }
 

@@ -9,8 +9,10 @@ import com.qizhou.annotation.DbCache
 import com.qizhou.annotation.SpCache
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.jvm.jvmWildcard
 import java.util.*
 import javax.lang.model.element.ExecutableElement
+import kotlin.collections.ArrayList
 
 
 /**
@@ -39,7 +41,6 @@ abstract class ReposityMothed(val executableElement: ExecutableElement) {
                     executableElement.getAnnotation(DbCache::class.java) != null
                     )
 
-
         isObservable = executableElement.returnType.simpleName() == ObservableSimpleName
 
         if (!isObservable && !parameters.isEmpty()) {
@@ -51,13 +52,33 @@ abstract class ReposityMothed(val executableElement: ExecutableElement) {
 
                 if (ctType is ParameterizedTypeName) {
 
-                    returnType = ctType.typeArguments[0].asNonNullable()
+                    var returnTypeTemp = ctType.typeArguments[0].javaToKotlinType()
+                    var returnTypeTempStr = returnTypeTemp.toString()
+
+                    if (returnTypeTempStr.contains('<') && returnTypeTempStr.contains('>')) {
+
+                        val returnTypeTempStrArray = returnTypeTempStr.split("<", ">")
+                        val list = ArrayList<TypeName>()
+                        returnTypeTempStrArray.forEach {
+                            if (!it.isEmpty()) {
+                                val string = it.replaceFirst("in ", "").replaceFirst("out ", "")
+                                list.add(getClassName(string))
+                            }
+                        }
+
+                        var typeName = list[list.size - 1]
+
+                        for (i in list.size - 2 downTo 0) {
+                            typeName = (list[i] as ClassName).parameterizedBy(typeName)
+                        }
+
+                        returnType = typeName
 
 
-//                    val typeStr =  returnType.toString()
-//                    val index = typeStr.lastIndexOf('.')
-//                    Logger.warn("returnType    xiechen  "+typeStr)
-//                    returnType = ClassName(typeStr.substring(3,index),typeStr.substring(index+1,typeStr.length))
+                    } else {
+                        val typeStr = returnTypeTemp.toString()
+                        returnType = getClassName(typeStr.replaceFirst("in ", ""))
+                    }
                 }
             }
         }
@@ -75,6 +96,16 @@ abstract class ReposityMothed(val executableElement: ExecutableElement) {
                 dataFetcherName = FlowDataSourceClassType
             }
         }
+    }
+
+
+    private fun getClassName(typeStr: String): TypeName {
+        val index = typeStr.lastIndexOf('.')
+
+        return ClassName(
+            typeStr.substring(0, index),
+            typeStr.substring(index + 1, typeStr.length)
+        ).javaToKotlinType()
     }
 
 

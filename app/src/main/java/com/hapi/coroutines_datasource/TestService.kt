@@ -8,7 +8,7 @@ import io.reactivex.Observable
 interface TestService {
 
     @AutoApi
-   suspend fun a(a:Int):User
+   suspend fun a(a:Int):List<List<User>>
 
     @SpCache
     suspend fun b(a:Int):Int
