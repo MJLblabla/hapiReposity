@@ -1,0 +1,23 @@
+apply plugin: 'java-library'
+
+apply plugin: 'com.pince.upaar'
+
+upinfo{
+    groupId = 'com.pince.maven' //选填 默认为此参数
+    artifactId = 'fecther_annotation' //必填 组件名称
+    version = '1.0.0'     //必填 组件版本
+    gitRepo = 'origin' //选填
+    packaging = 'aar' //选填 默认aar 可填jar
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

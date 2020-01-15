@@ -1,0 +1,2 @@
+include ':app', ':datasource', ':ReposityCompiler', ':fecther_annotation'
+rootProject.name='coroutines_datasource'
