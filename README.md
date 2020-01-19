@@ -6,15 +6,17 @@
 
 
 
-
+respotity数据源层
+-------------
 
 ## 框架总览 ##
 [![](https://jitpack.io/v/MJLblabla/hapiReposity.svg)](https://jitpack.io/#MJLblabla/hapiReposity)
 
 ![此处输入图片的描述][1]
 
-使用注解生成respotity层
-业务层参考hapivm [此处输入链接的描述][2]
+**业务层框架参考hapivm [点我点我][2]**
+
+使用注解生成respotity层，
 手动控制缓存更加灵活，如先返回缓存数据再返回最新数据（回调两次），手动控制内存缓存等
 
 
