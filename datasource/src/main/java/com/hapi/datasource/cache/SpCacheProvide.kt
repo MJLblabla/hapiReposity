@@ -1,6 +1,7 @@
 package com.hapi.datasource.cache
 
 
+import android.net.Uri
 import android.text.TextUtils
 import com.alibaba.fastjson.util.ParameterizedTypeImpl
 import com.hapi.datasource.JsonUtil
@@ -14,7 +15,7 @@ import java.lang.reflect.Type
  * urlKey :缓存key建议用url参数区分是哪次请求
  * cacheTime　缓存时间
  */
-class SpCacheProvide<R>(private val urlKey: String, private val cacheTime: Long = -1,val clazz: Type) : LocalCacheProvide<R> {
+class SpCacheProvide<R>( val key: String, private val cacheTime: Long = -1, val clazz: Type) : LocalCacheProvide<R> (key){
 
 
     private fun getParameterType(): Type {
@@ -29,11 +30,13 @@ class SpCacheProvide<R>(private val urlKey: String, private val cacheTime: Long 
     }
 
     override fun saveToLocal(data: R) {
+        val urlKey = cacheUriKey
         val temp = CacheData(data, System.currentTimeMillis())
         SpUtil.get(md5Url(urlKey)).saveData("SpCacheProvide_$urlKey", JsonUtil.toJson(temp))
     }
 
     override fun loadFromLocal(): R? {
+        val urlKey = cacheUriKey
         val now = System.currentTimeMillis()
         val jsonStr = SpUtil.get(md5Url(urlKey)).readString("SpCacheProvide_$urlKey", "")
         val temp = if (TextUtils.isEmpty(jsonStr)) null else JsonUtil.fromJson<CacheData<R>>(jsonStr, getSpType())

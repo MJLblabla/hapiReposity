@@ -22,7 +22,7 @@ class SpCacheFunc (private val mReposityMothed : SpCacheMethod)  : FuncBuilder(m
                 + "\n}.startFetchData()"
             , mReposityMothed.dataFetcherName!!
             , SpCacheHttpClassName
-            , mReposityMothed.key
+            , mReposityMothed.cacheKey
             , mReposityMothed.cacheTime
             , (mReposityMothed.returnType as ParameterizedTypeName).typeArguments[0]
             , FetchStrategyClassName

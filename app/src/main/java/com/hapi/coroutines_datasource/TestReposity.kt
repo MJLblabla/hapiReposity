@@ -16,19 +16,19 @@ open class TestReposity : BaseReposity<TestService>() {
     suspend fun a(a: Int): List<List<User>> = apiService.a(a)
 
     fun c(a: Int): Flow<List<User>> {
-         return FlowDataFetcher(Ap(),NetworkFetchStrategy.OnlyRemote){
+         return FlowDataFetcher(Ap("cache//com.hapi.coroutines_datasource.TestService:80/c?a=${a}"),NetworkFetchStrategy.OnlyRemote){
                  apiService.c(a)
                 }.startFetchData()
     }
 
     fun d(a: Int): Observable<List<User>> {
-         return RxDataFetcher(Ap(),NetworkFetchStrategy.OnlyRemote){
+         return RxDataFetcher(Ap("cache//com.hapi.coroutines_datasource.TestService:80/d?a=${a}"),NetworkFetchStrategy.OnlyRemote){
                  apiService.d(a)
                 }.startFetchData()
     }
 
     fun b(a: Int): Flow<Int> {
-         return FlowDataFetcher(SpCacheProvide("b${a}",10800000,Int::class.java),NetworkFetchStrategy.CacheFirst){
+         return FlowDataFetcher(SpCacheProvide("cache//com.hapi.coroutines_datasource.TestService:80/b?a=${a}",10800000,Int::class.java),NetworkFetchStrategy.CacheFirst){
                  apiService.b(a)
                 }.startFetchData()
     }

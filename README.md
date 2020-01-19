@@ -107,7 +107,7 @@
 ## 自定义缓存 ##
 
     @Provider(providerKey = "aaa")
-    class TestCahcheProvider : LocalCacheProvide<List<UserInfo>> {
+    class TestCahcheProvider (key:String) : LocalCacheProvide<List<User>>(key){
         /**
          * 获得缓存数据
          */

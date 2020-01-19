@@ -15,13 +15,13 @@ class AutoApiWithCacheFunc (private val mReposityMothed : AutoApiWithCacheMethod
             paramsStringBuilder.append(it.name).append(",")
         }
         Logger.warn("addStatement.addStatement  SpCacheFuncSpCacheFunc")
-        funcBuilder.addStatement(" return %T(%T(),%T.%L){\n " +
+        funcBuilder.addStatement(" return %T(%T(%S),%T.%L){\n " +
                 "apiService.%L(%L)"
 
                 + "\n}.startFetchData()"
             , mReposityMothed.dataFetcherName!!
             ,  mReposityMothed.provideClass!!
-
+            ,mReposityMothed.cacheKey
             , FetchStrategyClassName
             , mReposityMothed.fetchStrategy
             , reposityMothed.methodName

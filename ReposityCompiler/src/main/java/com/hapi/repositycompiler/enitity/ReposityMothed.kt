@@ -12,6 +12,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.jvm.jvmWildcard
 import java.util.*
 import javax.lang.model.element.ExecutableElement
+import javax.lang.model.element.TypeElement
 import kotlin.collections.ArrayList
 
 
@@ -29,6 +30,9 @@ abstract class ReposityMothed(val executableElement: ExecutableElement) {
     var isUseCache = false
     var addSuspend = false
     var dataFetcherName: ClassName? = null
+
+    var cacheKey:String=""
+
     abstract fun initParameters()
 
     open fun build() {
@@ -96,6 +100,16 @@ abstract class ReposityMothed(val executableElement: ExecutableElement) {
                 dataFetcherName = FlowDataSourceClassType
             }
         }
+
+        var pStr =if(parameters.isEmpty()){""}else{"?"}
+        parameters?.forEachIndexed { index, parameter ->
+            var str ="${parameter.name}=\${${parameter.name}}"
+            if(index!=parameters.size-1){
+                str= "$str&"
+            }
+            pStr += str
+        }
+        cacheKey = "cache//${(executableElement.enclosingElement as TypeElement).qualifiedName}:80/${methodName}${pStr}"
     }
 
 

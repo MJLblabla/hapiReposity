@@ -2,6 +2,7 @@ package com.hapi.coroutines_datasource
 
 import com.qizhou.annotation.AutoApi
 import com.qizhou.annotation.AutoApiWithCache
+import com.qizhou.annotation.NetworkFetchStrategy
 import com.qizhou.annotation.SpCache
 import io.reactivex.Observable
 
@@ -20,7 +21,5 @@ interface TestService {
 
     @AutoApiWithCache(providerKey = "aaa")
      fun d(a:Int):Observable<List<User>>
-
-
 
 }

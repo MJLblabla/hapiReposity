@@ -4,7 +4,7 @@ import com.hapi.datasource.cache.LocalCacheProvide
 import com.qizhou.annotation.Provider
 
 @Provider(providerKey = "aaa")
-class Ap : LocalCacheProvide<List<User>> {
+class Ap(key:String) : LocalCacheProvide<List<User>>(key) {
     /**
      * 获得缓存数据
      */
