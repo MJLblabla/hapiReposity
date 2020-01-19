@@ -14,6 +14,7 @@
 ![此处输入图片的描述][1]
 
 使用注解生成respotity层
+业务层参考hapivm [此处输入链接的描述][2]
 手动控制缓存更加灵活，如先返回缓存数据再返回最新数据（回调两次），手动控制内存缓存等
 
 
@@ -106,23 +107,24 @@
     }
 ## 自定义缓存 ##
 
-    @Provider(providerKey = "aaa")
-    class TestCahcheProvider (key:String) : LocalCacheProvide<List<User>>(key){
-        /**
-         * 获得缓存数据
-         */
-        override fun loadFromLocal(): List<UserInfo>? {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+     key  --> cache://类名／方法名？key=xx&key2=xx
+        @Provider(providerKey = "aaa")
+        class TestCahcheProvider (key:String) : LocalCacheProvide<List<User>>(key){
+            /**
+             * 获得缓存数据
+             */
+            override fun loadFromLocal(): List<UserInfo>? {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
 
-        /**
-         * 存储方案
-         */
-        override fun saveToLocal(data: List<UserInfo>) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+            /**
+             * 存储方案
+             */
+            override fun saveToLocal(data: List<UserInfo>) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
 
-    }
+        }
 
 
 ## 接入 ##
@@ -132,3 +134,4 @@
 
 
   [1]: https://github.com/MJLblabla/hapiVm/blob/latest_branch/img/ic.png
+  [2]: https://github.com/MJLblabla/hapiVm

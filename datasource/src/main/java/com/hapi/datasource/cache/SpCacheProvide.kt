@@ -12,7 +12,7 @@ import java.lang.reflect.Type
 
 /**
  * 采用sp储存
- * urlKey :缓存key建议用url参数区分是哪次请求
+ * urlKey
  * cacheTime　缓存时间
  */
 class SpCacheProvide<R>( val key: String, private val cacheTime: Long = -1, val clazz: Type) : LocalCacheProvide<R> (key){
