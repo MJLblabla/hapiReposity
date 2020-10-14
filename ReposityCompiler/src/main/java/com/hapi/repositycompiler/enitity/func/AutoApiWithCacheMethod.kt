@@ -2,10 +2,8 @@ package com.hapi.repositycompiler.enitity.func
 
 import com.hapi.repositycompiler.aptUtils.types.asKotlinTypeName
 import com.hapi.repositycompiler.enitity.ReposityMothed
-import com.qizhou.annotation.AutoApi
 import com.qizhou.annotation.AutoApiWithCache
 import com.squareup.kotlinpoet.TypeName
-import com.sun.javafx.logging.Logger
 import com.sun.tools.javac.code.Symbol
 import javax.lang.model.element.ExecutableElement
 

@@ -11,8 +11,6 @@ import javax.lang.model.element.ExecutableElement
 class SpCacheMethod(private val symbol: Symbol.MethodSymbol, private val mExecutableElement: ExecutableElement) : ReposityMothed(mExecutableElement) {
 
 
-
-
     override fun initParameters() {
         val annotation: SpCache = executableElement.getAnnotation(SpCache::class.java)
         val defaultVMap = HashMap<String,String>()
@@ -29,7 +27,6 @@ class SpCacheMethod(private val symbol: Symbol.MethodSymbol, private val mExecut
 
     var cacheTime = 0
     var fetchStrategy = "OnlyRemote"
-
 
     override fun build(){
         super.build()

@@ -16,5 +16,5 @@ val RxDataSourceClassType = ClassName("com.hapi.datasource","RxDataFetcher")
 val SpCacheHttpClassName = ClassName("com.hapi.datasource.cache","SpCacheProvide")
 val FetchStrategyClassName = ClassName("com.qizhou.annotation","NetworkFetchStrategy")
 
-
+val ParameterizedTypeImplClassName = ClassName("com.alibaba.fastjson.util","ParameterizedTypeImpl")
 
