@@ -56,15 +56,5 @@ class SpCacheProvide<R>( val key: String, private val cacheTime: Long = -1, val 
         return EncryptUtil.MD5(url)
     }
 
-    inner class CacheData<R> {
-        var data: R? = null
-        var time: Long = -1
 
-        constructor()
-
-        constructor(data: R, time: Long) {
-            this.data = data
-            this.time = time
-        }
-    }
 }
